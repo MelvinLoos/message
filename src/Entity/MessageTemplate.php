@@ -259,7 +259,7 @@ class MessageTemplate extends ConfigEntityBundleBase implements MessageTemplateI
 
       // If there was no translated text, we return nothing instead of falling
       // back to the default language.
-      $text = $translated_text ?: ['value' => '', 'format' => ''];
+      $text = $translated_text ?: [];
     }
 
     // Process text format.
@@ -269,8 +269,8 @@ class MessageTemplate extends ConfigEntityBundleBase implements MessageTemplateI
       // @see check_markup()
       $build = [
         '#type' => 'processed_text',
-        '#text' => $item['value'],
-        '#format' => $item['format'],
+        '#text' => array_key_exists('value', $item) ? $item['value'] : '',
+        '#format' => array_key_exists('format', $item) ? $item['format'] : '',
         '#langcode' => $langcode,
       ];
       $text[$key] = \Drupal::service('renderer')->renderPlain($build);
