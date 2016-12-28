@@ -259,7 +259,7 @@ class MessageTemplate extends ConfigEntityBundleBase implements MessageTemplateI
 
       // If there was no translated text, we return nothing instead of falling
       // back to the default language.
-      $text = $translated_text ?: [];
+      $text = $translated_text ?: ['value' => '', 'format' => ''];
     }
 
     // Process text format.
